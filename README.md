@@ -27,7 +27,7 @@ The project demonstrates how Big Data technologies and machine learning can be c
 
 ---
 
-## 🛠 Technologies Used
+##  Technologies Used
 
 - Python
 - PySpark
@@ -60,7 +60,7 @@ Dataset source:
 
 ---
 
-## ⚙️ Project Pipeline
+##  Project Pipeline
 
 ### 1️⃣ Data Loading and Distributed Processing
 - Dataset ingestion using PySpark
@@ -155,6 +155,6 @@ University of Bologna
 
 ---
 
-## 📄 License
+##  License
 
 This project was developed for academic and educational purposes.
