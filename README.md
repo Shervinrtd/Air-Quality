@@ -1,160 +1,172 @@
-#  Air Quality Prediction Using PySpark and Machine Learning  
-## A Distributed Time-Series Forecasting Pipeline for Environmental Pollution Analysis
-
----
+#  Air Pollution Prediction Using PySpark
 
 ##  Project Overview
 
-This project develops a scalable machine learning pipeline using **Apache Spark (PySpark)** to predict Carbon Monoxide (`CO_GT`) concentration from environmental sensor measurements and temporal features.
+This project implements a distributed machine learning pipeline using Apache Spark and PySpark to analyze and predict extreme air pollution levels across the United States.
 
-The workflow includes:
+The objective of the project is to predict the **99th Percentile** of air pollution measurements using environmental, geographical, and observational data collected from EPA monitoring stations.
 
-- Distributed data preprocessing
-- Anomaly and missing-value handling
-- Time-series feature engineering
-- Cyclical temporal encoding
-- Lag-feature generation
-- Chronological train/test evaluation
-- Hyperparameter tuning
-- Model comparison using Spark MLlib
+The notebook demonstrates a complete Big Data workflow including:
 
-Two regression models were implemented and evaluated:
-
-- Linear Regression
-- Random Forest Regression
-
-The project demonstrates how Big Data technologies and machine learning can be combined to perform large-scale environmental analytics and short-term air quality prediction.
+- Large-scale data ingestion
+- Data cleaning and preprocessing
+- Feature engineering
+- Categorical encoding
+- Distributed machine learning with Spark MLlib
+- Model evaluation and comparison
+- Data visualization and interpretation
 
 ---
 
-##  Technologies Used
+#  Dataset
+
+Dataset Source:
+
+EPA Air Quality Annual Summary Data
+
+Official Source:
+https://aqs.epa.gov/aqsweb/airdata/download_files.html
+
+The dataset contains more than **59,000 records** and multiple environmental variables including:
+
+- AQI
+- Pollution concentration statistics
+- Observation counts
+- Geographic coordinates
+- Environmental monitoring metadata
+
+---
+
+#  Project Requirements Fulfilled
+
+This project satisfies the Big Data course requirements:
+
+| Requirement | Status |
+|---|---|
+| N > 20,000 patterns | ✅ |
+| p > 4 features | ✅ |
+| N × p > 1,000,000 | ✅ |
+| At least 3 ML algorithms | ✅ |
+| Distributed processing with Spark | ✅ |
+| Reproducible notebook | ✅ |
+
+---
+
+#  Technologies Used
 
 - Python
 - PySpark
-- Apache Spark
-- Spark MLlib
+- Apache Spark MLlib
+- Pandas
+- Matplotlib
 - Google Colab
-- Machine Learning
-- Time-Series Forecasting
 
 ---
 
-##  Dataset
+#  Machine Learning Models
 
-The project uses the **UCI Air Quality Dataset**, containing hourly air pollution sensor measurements collected from an Italian city.
+The following regression models were implemented and compared:
 
-### Features include:
-
-- Carbon Monoxide (CO)
-- Nitrogen Oxides (NOx)
-- Benzene concentration
-- Temperature
-- Relative Humidity
-- Absolute Humidity
-- Temporal information (hour, month, weekday)
-
-Dataset source:
-
-- UCI Machine Learning Repository
-- GitHub-hosted CSV dataset
+1. **Linear Regression**
+2. **Random Forest Regressor**
+3. **Generalized Linear Regression (GLR)**
 
 ---
 
-##  Project Pipeline
+#  Target Variable
 
-### 1️⃣ Data Loading and Distributed Processing
-- Dataset ingestion using PySpark
-- Distributed processing with Apache Spark
+The target variable used for prediction is:
 
-### 2️⃣ Data Cleaning
-- Removal of corrupted columns
-- Handling sensor anomalies (`-200` values)
-- Numeric type conversion
-- Missing value treatment
+```text
+99th Percentile
+```
 
-### 3️⃣ Time-Series Feature Engineering
-- Datetime parsing
-- Hour / Month / DayOfWeek extraction
-- Cyclical encoding using sine/cosine transformations
-- Lag feature generation (`CO_GT_Lag1`, `CO_GT_Lag2`)
-
-### 4️⃣ Machine Learning Pipeline
-- Feature vector assembly
-- Standardization
-- Chronological train/test split
-- Spark ML Pipelines
-
-### 5️⃣ Model Training
-- Linear Regression
-- Random Forest Regression
-- Hyperparameter tuning
-
-### 6️⃣ Evaluation
-Models were evaluated using:
-- RMSE (Root Mean Squared Error)
-- R² Score
+This variable represents extreme pollution concentration levels and is useful for analyzing severe air quality conditions.
 
 ---
 
-##  Final Results
+#  Main Pipeline Steps
 
-### Linear Regression
-- R² ≈ 0.87
-- Strong predictive consistency
-- Excellent performance for short-term pollution prediction
+## 1. Data Loading
+- Dataset downloaded directly from GitHub
+- Loaded using PySpark
 
-### Random Forest Regression
-- Improved performance after hyperparameter tuning
-- Effective nonlinear modeling of pollution dynamics
+## 2. Data Cleaning
+- Schema sanitization
+- Null handling
+- Feature selection
 
----
+## 3. Feature Engineering
+- Environmental statistical features
+- Geographical features
+- Categorical encoding using OneHotEncoder
 
-##  Key Features
+## 4. Distributed Machine Learning
+- Spark MLlib Pipelines
+- Train/Test split
+- Model training and evaluation
 
-✅ Distributed preprocessing with Spark  
-✅ Time-series aware evaluation  
-✅ Leakage-free chronological split  
-✅ Cyclical temporal encoding  
-✅ Lag-based temporal memory features  
-✅ Hyperparameter tuning  
-✅ Spark ML Pipelines  
-✅ Advanced feature engineering  
-
----
-
-##  Key Concepts Demonstrated
-
-- Big Data processing with Apache Spark
-- Distributed machine learning
-- Time-series forecasting
-- Feature engineering
-- Sensor anomaly handling
-- Model evaluation and optimization
-- Environmental analytics
+## 5. Visualization
+- Actual vs Predicted values
+- Feature importance
+- Model comparison charts
 
 ---
 
-##  Future Improvements
+#  Final Results
 
-Potential future enhancements include:
+| Model | R² Score |
+|---|---|
+| Linear Regression | ~0.99 |
+| Random Forest | ~0.88 |
+| Generalized Linear Regression | High performance |
 
-- Forward-fill temporal imputation
-- Fully causal forecasting architecture
-- Deep learning approaches (LSTM / GRU)
-- Real-time streaming analytics using Spark Streaming
-- Multi-step future forecasting
-- Advanced temporal resampling
+The results indicate strong linear relationships between environmental variables and extreme pollution concentration levels.
 
 ---
 
-##  Author
+#  How to Run
 
-**Alireza Shahidini**  
-Master’s Student in Artificial Intelligence  
+1. Open the notebook in Google Colab
+2. Run all cells sequentially
+3. The dataset is downloaded automatically from GitHub
+4. Models are trained and evaluated automatically
+
+---
+
+#  Repository Structure
+
+```text
+├── notebook.ipynb
+├── dataset/
+│   └── annual_conc_by_monitor_2025.zip
+├── README.md
+```
+
+---
+
+#  Required Library Versions
+
+- Python 3.x
+- PySpark 3.x
+- Pandas
+- Matplotlib
+
+The notebook includes a dedicated section that prints the exact library versions used during execution.
+
+---
+
+#  Notes
+
+- The notebook is fully self-contained and reproducible.
+- The dataset is automatically downloaded from the repository.
+- Apache Spark MLlib is used for distributed machine learning.
+- Environmental data preprocessing and encoding are handled directly inside the notebook.
+
+---
+
+#  Authors
+Alireza Shahidiani
+Gita Javadi
+Big Data Analytics Project  
 University of Bologna
-
----
-
-##  License
-
-This project was developed for academic and educational purposes.
