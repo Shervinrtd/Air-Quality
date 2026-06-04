@@ -1,0 +1,24 @@
+# Dataset — downloaded automatically by the notebook, not stored in the repo
+*.csv
+*.zip
+*.tar.gz
+*.tgz
+
+# Notebook outputs and results
+results/
+/vagrant/results/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Vagrant runtime files
+.vagrant/
+
+# OS files
+.DS_Store
+Thumbs.db
