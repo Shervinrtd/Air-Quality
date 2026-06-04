@@ -1,0 +1,3 @@
+Ridge: regParam=1.0
+Elastic Net: regParam=0.1, elasticNetParam=0.2
+GBT: maxDepth=10, maxIter=20
